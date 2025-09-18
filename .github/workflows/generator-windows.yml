@@ -69,8 +69,7 @@ env:
   TAG_NAME: "${{ inputs.upload-tag }}"
   VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
   # vcpkg version: 2024.07.12
-  #VCPKG_COMMIT_ID: "460551b0ec06be1ba6b918448bf3b0f44add813d"
-  VCPKG_COMMIT_ID: "4334d8b4c8916018600212ab4dd4bbdc343065d1"
+  VCPKG_COMMIT_ID: "460551b0ec06be1ba6b918448bf3b0f44add813d"
   VERSION: "${{ fromJson(inputs.extras).version }}"
   NDK_VERSION: "r27c"
   #signing keys env variable checks
@@ -79,7 +78,6 @@ env:
   UPLOAD_ARTIFACT: 'true'
   SIGN_BASE_URL: "${{ secrets.SIGN_BASE_URL }}"
   STATUS_URL: "${{ secrets.GENURL }}/updategh"
-  #STATUS_URL: "rdgen.14-88.ru/updategh"
 
 
 jobs:
@@ -344,7 +342,7 @@ jobs:
         uses: lukka/run-vcpkg@v11
         with:
           vcpkgDirectory: C:\vcpkg
-          vcpkgGitCommitId: {{ env.VCPKG_COMMIT_ID }}
+          vcpkgGitCommitId: ${{ env.VCPKG_COMMIT_ID }}
           doNotCache: false
 
       - name: Install vcpkg dependencies
